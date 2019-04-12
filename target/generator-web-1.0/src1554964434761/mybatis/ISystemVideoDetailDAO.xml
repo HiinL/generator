@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.ISystemVideoDetailDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.SystemVideoDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="system_video_id" jdbcType="INTEGER" property="systemVideoId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="video_path" jdbcType="VARCHAR" property="videoPath" />
+    <result column="thumb_path" jdbcType="VARCHAR" property="thumbPath" />
+    <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
+    <result column="duration" jdbcType="VARCHAR" property="duration" />
+    <result column="operator_name" jdbcType="VARCHAR" property="operatorName" />
+    <result column="descriptions" jdbcType="VARCHAR" property="descriptions" />
+    <result column="list_order" jdbcType="INTEGER" property="listOrder" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="viewer_count" jdbcType="INTEGER" property="viewerCount" />
+    <result column="real_viewer_count" jdbcType="INTEGER" property="realViewerCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, system_video_id, name, video_path, thumb_path, teacher_name, duration, operator_name, 
+    descriptions, list_order, status, create_at, viewer_count, real_viewer_count
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from system_video_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_video_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.SystemVideoDetail">
+    insert into system_video_detail (id, system_video_id, name, 
+      video_path, thumb_path, teacher_name, 
+      duration, operator_name, descriptions, 
+      list_order, status, create_at, 
+      viewer_count, real_viewer_count)
+    values (#{id,jdbcType=INTEGER}, #{systemVideoId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{videoPath,jdbcType=VARCHAR}, #{thumbPath,jdbcType=VARCHAR}, #{teacherName,jdbcType=VARCHAR}, 
+      #{duration,jdbcType=VARCHAR}, #{operatorName,jdbcType=VARCHAR}, #{descriptions,jdbcType=VARCHAR}, 
+      #{listOrder,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, 
+      #{viewerCount,jdbcType=INTEGER}, #{realViewerCount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.SystemVideoDetail">
+    insert into system_video_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="systemVideoId != null">
+        system_video_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="videoPath != null">
+        video_path,
+      </if>
+      <if test="thumbPath != null">
+        thumb_path,
+      </if>
+      <if test="teacherName != null">
+        teacher_name,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+      <if test="operatorName != null">
+        operator_name,
+      </if>
+      <if test="descriptions != null">
+        descriptions,
+      </if>
+      <if test="listOrder != null">
+        list_order,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="viewerCount != null">
+        viewer_count,
+      </if>
+      <if test="realViewerCount != null">
+        real_viewer_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="systemVideoId != null">
+        #{systemVideoId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="videoPath != null">
+        #{videoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbPath != null">
+        #{thumbPath,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null">
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptions != null">
+        #{descriptions,jdbcType=VARCHAR},
+      </if>
+      <if test="listOrder != null">
+        #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="viewerCount != null">
+        #{viewerCount,jdbcType=INTEGER},
+      </if>
+      <if test="realViewerCount != null">
+        #{realViewerCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.SystemVideoDetail">
+    update system_video_detail
+    <set>
+      <if test="systemVideoId != null">
+        system_video_id = #{systemVideoId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="videoPath != null">
+        video_path = #{videoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbPath != null">
+        thumb_path = #{thumbPath,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        duration = #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null">
+        operator_name = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptions != null">
+        descriptions = #{descriptions,jdbcType=VARCHAR},
+      </if>
+      <if test="listOrder != null">
+        list_order = #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="viewerCount != null">
+        viewer_count = #{viewerCount,jdbcType=INTEGER},
+      </if>
+      <if test="realViewerCount != null">
+        real_viewer_count = #{realViewerCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.SystemVideoDetail">
+    update system_video_detail
+    set system_video_id = #{systemVideoId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      video_path = #{videoPath,jdbcType=VARCHAR},
+      thumb_path = #{thumbPath,jdbcType=VARCHAR},
+      teacher_name = #{teacherName,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=VARCHAR},
+      operator_name = #{operatorName,jdbcType=VARCHAR},
+      descriptions = #{descriptions,jdbcType=VARCHAR},
+      list_order = #{listOrder,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      viewer_count = #{viewerCount,jdbcType=INTEGER},
+      real_viewer_count = #{realViewerCount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

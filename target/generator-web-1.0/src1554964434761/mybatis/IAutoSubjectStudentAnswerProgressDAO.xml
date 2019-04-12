@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.IAutoSubjectStudentAnswerProgressDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.AutoSubjectStudentAnswerProgress">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="student_id" jdbcType="INTEGER" property="studentId" />
+    <result column="curriculum_id" jdbcType="INTEGER" property="curriculumId" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+    <result column="last_answer_index" jdbcType="INTEGER" property="lastAnswerIndex" />
+    <result column="auto_subtype_id" jdbcType="INTEGER" property="autoSubtypeId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, student_id, curriculum_id, create_at, update_at, last_answer_index, auto_subtype_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from auto_subject_student_answer_progress
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from auto_subject_student_answer_progress
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.AutoSubjectStudentAnswerProgress">
+    insert into auto_subject_student_answer_progress (id, student_id, curriculum_id, 
+      create_at, update_at, last_answer_index, 
+      auto_subtype_id)
+    values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{curriculumId,jdbcType=INTEGER}, 
+      #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}, #{lastAnswerIndex,jdbcType=INTEGER}, 
+      #{autoSubtypeId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.AutoSubjectStudentAnswerProgress">
+    insert into auto_subject_student_answer_progress
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="studentId != null">
+        student_id,
+      </if>
+      <if test="curriculumId != null">
+        curriculum_id,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+      <if test="lastAnswerIndex != null">
+        last_answer_index,
+      </if>
+      <if test="autoSubtypeId != null">
+        auto_subtype_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null">
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="curriculumId != null">
+        #{curriculumId,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastAnswerIndex != null">
+        #{lastAnswerIndex,jdbcType=INTEGER},
+      </if>
+      <if test="autoSubtypeId != null">
+        #{autoSubtypeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.AutoSubjectStudentAnswerProgress">
+    update auto_subject_student_answer_progress
+    <set>
+      <if test="studentId != null">
+        student_id = #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="curriculumId != null">
+        curriculum_id = #{curriculumId,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastAnswerIndex != null">
+        last_answer_index = #{lastAnswerIndex,jdbcType=INTEGER},
+      </if>
+      <if test="autoSubtypeId != null">
+        auto_subtype_id = #{autoSubtypeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.AutoSubjectStudentAnswerProgress">
+    update auto_subject_student_answer_progress
+    set student_id = #{studentId,jdbcType=INTEGER},
+      curriculum_id = #{curriculumId,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP},
+      last_answer_index = #{lastAnswerIndex,jdbcType=INTEGER},
+      auto_subtype_id = #{autoSubtypeId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

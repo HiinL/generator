@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.IExamUserDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.ExamUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="user_from" jdbcType="INTEGER" property="userFrom" />
+    <result column="user_flag" jdbcType="INTEGER" property="userFlag" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="new_id" jdbcType="VARCHAR" property="newId" />
+    <result column="user_from_new_id" jdbcType="VARCHAR" property="userFromNewId" />
+    <result column="user_flag_new_id" jdbcType="VARCHAR" property="userFlagNewId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, login_name, password, user_type, user_from, user_flag, status, create_at, 
+    new_id, user_from_new_id, user_flag_new_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exam_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exam_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.ExamUser">
+    insert into exam_user (id, name, login_name, 
+      password, user_type, user_from, 
+      user_flag, status, create_at, 
+      new_id, user_from_new_id, user_flag_new_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, #{userFrom,jdbcType=INTEGER}, 
+      #{userFlag,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, 
+      #{newId,jdbcType=VARCHAR}, #{userFromNewId,jdbcType=VARCHAR}, #{userFlagNewId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.ExamUser">
+    insert into exam_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="loginName != null">
+        login_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="userFrom != null">
+        user_from,
+      </if>
+      <if test="userFlag != null">
+        user_flag,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="newId != null">
+        new_id,
+      </if>
+      <if test="userFromNewId != null">
+        user_from_new_id,
+      </if>
+      <if test="userFlagNewId != null">
+        user_flag_new_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="userFrom != null">
+        #{userFrom,jdbcType=INTEGER},
+      </if>
+      <if test="userFlag != null">
+        #{userFlag,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newId != null">
+        #{newId,jdbcType=VARCHAR},
+      </if>
+      <if test="userFromNewId != null">
+        #{userFromNewId,jdbcType=VARCHAR},
+      </if>
+      <if test="userFlagNewId != null">
+        #{userFlagNewId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.ExamUser">
+    update exam_user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="userFrom != null">
+        user_from = #{userFrom,jdbcType=INTEGER},
+      </if>
+      <if test="userFlag != null">
+        user_flag = #{userFlag,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newId != null">
+        new_id = #{newId,jdbcType=VARCHAR},
+      </if>
+      <if test="userFromNewId != null">
+        user_from_new_id = #{userFromNewId,jdbcType=VARCHAR},
+      </if>
+      <if test="userFlagNewId != null">
+        user_flag_new_id = #{userFlagNewId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.ExamUser">
+    update exam_user
+    set name = #{name,jdbcType=VARCHAR},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=INTEGER},
+      user_from = #{userFrom,jdbcType=INTEGER},
+      user_flag = #{userFlag,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      new_id = #{newId,jdbcType=VARCHAR},
+      user_from_new_id = #{userFromNewId,jdbcType=VARCHAR},
+      user_flag_new_id = #{userFlagNewId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

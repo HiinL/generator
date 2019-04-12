@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.ISystemVideoProfessionDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.SystemVideoProfession">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="system_video_id" jdbcType="INTEGER" property="systemVideoId" />
+    <result column="profession_id" jdbcType="VARCHAR" property="professionId" />
+    <result column="system_video_new_id" jdbcType="VARCHAR" property="systemVideoNewId" />
+    <result column="profession_new_id" jdbcType="VARCHAR" property="professionNewId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, system_video_id, profession_id, system_video_new_id, profession_new_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from system_video_profession
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_video_profession
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.SystemVideoProfession">
+    insert into system_video_profession (id, system_video_id, profession_id, 
+      system_video_new_id, profession_new_id)
+    values (#{id,jdbcType=INTEGER}, #{systemVideoId,jdbcType=INTEGER}, #{professionId,jdbcType=VARCHAR}, 
+      #{systemVideoNewId,jdbcType=VARCHAR}, #{professionNewId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.SystemVideoProfession">
+    insert into system_video_profession
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="systemVideoId != null">
+        system_video_id,
+      </if>
+      <if test="professionId != null">
+        profession_id,
+      </if>
+      <if test="systemVideoNewId != null">
+        system_video_new_id,
+      </if>
+      <if test="professionNewId != null">
+        profession_new_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="systemVideoId != null">
+        #{systemVideoId,jdbcType=INTEGER},
+      </if>
+      <if test="professionId != null">
+        #{professionId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemVideoNewId != null">
+        #{systemVideoNewId,jdbcType=VARCHAR},
+      </if>
+      <if test="professionNewId != null">
+        #{professionNewId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.SystemVideoProfession">
+    update system_video_profession
+    <set>
+      <if test="systemVideoId != null">
+        system_video_id = #{systemVideoId,jdbcType=INTEGER},
+      </if>
+      <if test="professionId != null">
+        profession_id = #{professionId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemVideoNewId != null">
+        system_video_new_id = #{systemVideoNewId,jdbcType=VARCHAR},
+      </if>
+      <if test="professionNewId != null">
+        profession_new_id = #{professionNewId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.SystemVideoProfession">
+    update system_video_profession
+    set system_video_id = #{systemVideoId,jdbcType=INTEGER},
+      profession_id = #{professionId,jdbcType=VARCHAR},
+      system_video_new_id = #{systemVideoNewId,jdbcType=VARCHAR},
+      profession_new_id = #{professionNewId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

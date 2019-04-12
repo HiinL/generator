@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.IAdvertisementDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.Advertisement">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="adv_name" jdbcType="VARCHAR" property="advName" />
+    <result column="adv_pic" jdbcType="VARCHAR" property="advPic" />
+    <result column="adv_desc" jdbcType="VARCHAR" property="advDesc" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="adv_type" jdbcType="CHAR" property="advType" />
+    <result column="adv_place" jdbcType="CHAR" property="advPlace" />
+    <result column="bussiness_id" jdbcType="INTEGER" property="bussinessId" />
+    <result column="viewer_num" jdbcType="INTEGER" property="viewerNum" />
+    <result column="list_order" jdbcType="INTEGER" property="listOrder" />
+    <result column="publish_at" jdbcType="TIMESTAMP" property="publishAt" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="adv_url" jdbcType="VARCHAR" property="advUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, adv_name, adv_pic, adv_desc, is_deleted, adv_type, adv_place, bussiness_id, viewer_num, 
+    list_order, publish_at, create_at, remarks, adv_url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from advertisement
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from advertisement
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.Advertisement">
+    insert into advertisement (id, adv_name, adv_pic, 
+      adv_desc, is_deleted, adv_type, 
+      adv_place, bussiness_id, viewer_num, 
+      list_order, publish_at, create_at, 
+      remarks, adv_url)
+    values (#{id,jdbcType=INTEGER}, #{advName,jdbcType=VARCHAR}, #{advPic,jdbcType=VARCHAR}, 
+      #{advDesc,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, #{advType,jdbcType=CHAR}, 
+      #{advPlace,jdbcType=CHAR}, #{bussinessId,jdbcType=INTEGER}, #{viewerNum,jdbcType=INTEGER}, 
+      #{listOrder,jdbcType=INTEGER}, #{publishAt,jdbcType=TIMESTAMP}, #{createAt,jdbcType=TIMESTAMP}, 
+      #{remarks,jdbcType=VARCHAR}, #{advUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.Advertisement">
+    insert into advertisement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="advName != null">
+        adv_name,
+      </if>
+      <if test="advPic != null">
+        adv_pic,
+      </if>
+      <if test="advDesc != null">
+        adv_desc,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="advType != null">
+        adv_type,
+      </if>
+      <if test="advPlace != null">
+        adv_place,
+      </if>
+      <if test="bussinessId != null">
+        bussiness_id,
+      </if>
+      <if test="viewerNum != null">
+        viewer_num,
+      </if>
+      <if test="listOrder != null">
+        list_order,
+      </if>
+      <if test="publishAt != null">
+        publish_at,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="advUrl != null">
+        adv_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="advName != null">
+        #{advName,jdbcType=VARCHAR},
+      </if>
+      <if test="advPic != null">
+        #{advPic,jdbcType=VARCHAR},
+      </if>
+      <if test="advDesc != null">
+        #{advDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="advType != null">
+        #{advType,jdbcType=CHAR},
+      </if>
+      <if test="advPlace != null">
+        #{advPlace,jdbcType=CHAR},
+      </if>
+      <if test="bussinessId != null">
+        #{bussinessId,jdbcType=INTEGER},
+      </if>
+      <if test="viewerNum != null">
+        #{viewerNum,jdbcType=INTEGER},
+      </if>
+      <if test="listOrder != null">
+        #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="publishAt != null">
+        #{publishAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="advUrl != null">
+        #{advUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.Advertisement">
+    update advertisement
+    <set>
+      <if test="advName != null">
+        adv_name = #{advName,jdbcType=VARCHAR},
+      </if>
+      <if test="advPic != null">
+        adv_pic = #{advPic,jdbcType=VARCHAR},
+      </if>
+      <if test="advDesc != null">
+        adv_desc = #{advDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="advType != null">
+        adv_type = #{advType,jdbcType=CHAR},
+      </if>
+      <if test="advPlace != null">
+        adv_place = #{advPlace,jdbcType=CHAR},
+      </if>
+      <if test="bussinessId != null">
+        bussiness_id = #{bussinessId,jdbcType=INTEGER},
+      </if>
+      <if test="viewerNum != null">
+        viewer_num = #{viewerNum,jdbcType=INTEGER},
+      </if>
+      <if test="listOrder != null">
+        list_order = #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="publishAt != null">
+        publish_at = #{publishAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="advUrl != null">
+        adv_url = #{advUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.Advertisement">
+    update advertisement
+    set adv_name = #{advName,jdbcType=VARCHAR},
+      adv_pic = #{advPic,jdbcType=VARCHAR},
+      adv_desc = #{advDesc,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      adv_type = #{advType,jdbcType=CHAR},
+      adv_place = #{advPlace,jdbcType=CHAR},
+      bussiness_id = #{bussinessId,jdbcType=INTEGER},
+      viewer_num = #{viewerNum,jdbcType=INTEGER},
+      list_order = #{listOrder,jdbcType=INTEGER},
+      publish_at = #{publishAt,jdbcType=TIMESTAMP},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      adv_url = #{advUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

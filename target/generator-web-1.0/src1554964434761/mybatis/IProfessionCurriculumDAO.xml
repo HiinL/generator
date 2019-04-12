@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.IProfessionCurriculumDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.ProfessionCurriculum">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="profession_id" jdbcType="INTEGER" property="professionId" />
+    <result column="curriculum_id" jdbcType="INTEGER" property="curriculumId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="profession_new_id" jdbcType="VARCHAR" property="professionNewId" />
+    <result column="curriculum_new_id" jdbcType="VARCHAR" property="curriculumNewId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, profession_id, curriculum_id, type, profession_new_id, curriculum_new_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from profession_curriculum
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from profession_curriculum
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.ProfessionCurriculum">
+    insert into profession_curriculum (id, profession_id, curriculum_id, 
+      type, profession_new_id, curriculum_new_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{professionId,jdbcType=INTEGER}, #{curriculumId,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{professionNewId,jdbcType=VARCHAR}, #{curriculumNewId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.ProfessionCurriculum">
+    insert into profession_curriculum
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="professionId != null">
+        profession_id,
+      </if>
+      <if test="curriculumId != null">
+        curriculum_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="professionNewId != null">
+        profession_new_id,
+      </if>
+      <if test="curriculumNewId != null">
+        curriculum_new_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="professionId != null">
+        #{professionId,jdbcType=INTEGER},
+      </if>
+      <if test="curriculumId != null">
+        #{curriculumId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="professionNewId != null">
+        #{professionNewId,jdbcType=VARCHAR},
+      </if>
+      <if test="curriculumNewId != null">
+        #{curriculumNewId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.ProfessionCurriculum">
+    update profession_curriculum
+    <set>
+      <if test="professionId != null">
+        profession_id = #{professionId,jdbcType=INTEGER},
+      </if>
+      <if test="curriculumId != null">
+        curriculum_id = #{curriculumId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="professionNewId != null">
+        profession_new_id = #{professionNewId,jdbcType=VARCHAR},
+      </if>
+      <if test="curriculumNewId != null">
+        curriculum_new_id = #{curriculumNewId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.ProfessionCurriculum">
+    update profession_curriculum
+    set profession_id = #{professionId,jdbcType=INTEGER},
+      curriculum_id = #{curriculumId,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      profession_new_id = #{professionNewId,jdbcType=VARCHAR},
+      curriculum_new_id = #{curriculumNewId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.IStudentCollectRecordDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.StudentCollectRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="source_table" jdbcType="VARCHAR" property="sourceTable" />
+    <result column="bussiness_id" jdbcType="INTEGER" property="bussinessId" />
+    <result column="student_info_id" jdbcType="INTEGER" property="studentInfoId" />
+    <result column="curriculum_id" jdbcType="INTEGER" property="curriculumId" />
+    <result column="collect_title" jdbcType="VARCHAR" property="collectTitle" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, source_table, bussiness_id, student_info_id, curriculum_id, collect_title, 
+    status, create_at, update_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from student_collect_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from student_collect_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.StudentCollectRecord">
+    insert into student_collect_record (id, type, source_table, 
+      bussiness_id, student_info_id, curriculum_id, 
+      collect_title, status, create_at, 
+      update_at)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{sourceTable,jdbcType=VARCHAR}, 
+      #{bussinessId,jdbcType=INTEGER}, #{studentInfoId,jdbcType=INTEGER}, #{curriculumId,jdbcType=INTEGER}, 
+      #{collectTitle,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{createAt,jdbcType=TIMESTAMP}, 
+      #{updateAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.StudentCollectRecord">
+    insert into student_collect_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="sourceTable != null">
+        source_table,
+      </if>
+      <if test="bussinessId != null">
+        bussiness_id,
+      </if>
+      <if test="studentInfoId != null">
+        student_info_id,
+      </if>
+      <if test="curriculumId != null">
+        curriculum_id,
+      </if>
+      <if test="collectTitle != null">
+        collect_title,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="sourceTable != null">
+        #{sourceTable,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessId != null">
+        #{bussinessId,jdbcType=INTEGER},
+      </if>
+      <if test="studentInfoId != null">
+        #{studentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="curriculumId != null">
+        #{curriculumId,jdbcType=INTEGER},
+      </if>
+      <if test="collectTitle != null">
+        #{collectTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.StudentCollectRecord">
+    update student_collect_record
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="sourceTable != null">
+        source_table = #{sourceTable,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessId != null">
+        bussiness_id = #{bussinessId,jdbcType=INTEGER},
+      </if>
+      <if test="studentInfoId != null">
+        student_info_id = #{studentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="curriculumId != null">
+        curriculum_id = #{curriculumId,jdbcType=INTEGER},
+      </if>
+      <if test="collectTitle != null">
+        collect_title = #{collectTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.StudentCollectRecord">
+    update student_collect_record
+    set type = #{type,jdbcType=INTEGER},
+      source_table = #{sourceTable,jdbcType=VARCHAR},
+      bussiness_id = #{bussinessId,jdbcType=INTEGER},
+      student_info_id = #{studentInfoId,jdbcType=INTEGER},
+      curriculum_id = #{curriculumId,jdbcType=INTEGER},
+      collect_title = #{collectTitle,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

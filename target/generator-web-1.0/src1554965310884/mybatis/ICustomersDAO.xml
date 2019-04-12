@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.ICustomersDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.Customers">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="crm_stage_id" jdbcType="INTEGER" property="crmStageId" />
+    <result column="crm_from_type_id" jdbcType="INTEGER" property="crmFromTypeId" />
+    <result column="customer_status" jdbcType="INTEGER" property="customerStatus" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.juwen.ibc.pojo.Customers">
+    <result column="descriptions" jdbcType="LONGVARCHAR" property="descriptions" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, mobile_no, crm_stage_id, crm_from_type_id, customer_status, status, create_at, 
+    admin_id
+  </sql>
+  <sql id="Blob_Column_List">
+    descriptions
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from customers
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customers
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.Customers">
+    insert into customers (id, name, mobile_no, 
+      crm_stage_id, crm_from_type_id, customer_status, 
+      status, create_at, admin_id, 
+      descriptions)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{mobileNo,jdbcType=VARCHAR}, 
+      #{crmStageId,jdbcType=INTEGER}, #{crmFromTypeId,jdbcType=INTEGER}, #{customerStatus,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, #{adminId,jdbcType=INTEGER}, 
+      #{descriptions,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.Customers">
+    insert into customers
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="mobileNo != null">
+        mobile_no,
+      </if>
+      <if test="crmStageId != null">
+        crm_stage_id,
+      </if>
+      <if test="crmFromTypeId != null">
+        crm_from_type_id,
+      </if>
+      <if test="customerStatus != null">
+        customer_status,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="descriptions != null">
+        descriptions,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null">
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="crmStageId != null">
+        #{crmStageId,jdbcType=INTEGER},
+      </if>
+      <if test="crmFromTypeId != null">
+        #{crmFromTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="customerStatus != null">
+        #{customerStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="descriptions != null">
+        #{descriptions,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.Customers">
+    update customers
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null">
+        mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="crmStageId != null">
+        crm_stage_id = #{crmStageId,jdbcType=INTEGER},
+      </if>
+      <if test="crmFromTypeId != null">
+        crm_from_type_id = #{crmFromTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="customerStatus != null">
+        customer_status = #{customerStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="descriptions != null">
+        descriptions = #{descriptions,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.juwen.ibc.pojo.Customers">
+    update customers
+    set name = #{name,jdbcType=VARCHAR},
+      mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      crm_stage_id = #{crmStageId,jdbcType=INTEGER},
+      crm_from_type_id = #{crmFromTypeId,jdbcType=INTEGER},
+      customer_status = #{customerStatus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      descriptions = #{descriptions,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.Customers">
+    update customers
+    set name = #{name,jdbcType=VARCHAR},
+      mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      crm_stage_id = #{crmStageId,jdbcType=INTEGER},
+      crm_from_type_id = #{crmFromTypeId,jdbcType=INTEGER},
+      customer_status = #{customerStatus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      admin_id = #{adminId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

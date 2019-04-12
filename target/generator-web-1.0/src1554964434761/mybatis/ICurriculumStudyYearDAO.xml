@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.ICurriculumStudyYearDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.CurriculumStudyYear">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="curriculum_id" jdbcType="INTEGER" property="curriculumId" />
+    <result column="study_year_id" jdbcType="INTEGER" property="studyYearId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, curriculum_id, study_year_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from curriculum_study_year
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from curriculum_study_year
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.CurriculumStudyYear">
+    insert into curriculum_study_year (id, curriculum_id, study_year_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{curriculumId,jdbcType=INTEGER}, #{studyYearId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.CurriculumStudyYear">
+    insert into curriculum_study_year
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="curriculumId != null">
+        curriculum_id,
+      </if>
+      <if test="studyYearId != null">
+        study_year_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="curriculumId != null">
+        #{curriculumId,jdbcType=INTEGER},
+      </if>
+      <if test="studyYearId != null">
+        #{studyYearId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.CurriculumStudyYear">
+    update curriculum_study_year
+    <set>
+      <if test="curriculumId != null">
+        curriculum_id = #{curriculumId,jdbcType=INTEGER},
+      </if>
+      <if test="studyYearId != null">
+        study_year_id = #{studyYearId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.CurriculumStudyYear">
+    update curriculum_study_year
+    set curriculum_id = #{curriculumId,jdbcType=INTEGER},
+      study_year_id = #{studyYearId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

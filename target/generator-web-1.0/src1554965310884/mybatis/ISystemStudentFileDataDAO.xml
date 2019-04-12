@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.ISystemStudentFileDataDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.SystemStudentFileData">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_path" jdbcType="VARCHAR" property="filePath" />
+    <result column="system_student_file_data_type_id" jdbcType="INTEGER" property="systemStudentFileDataTypeId" />
+    <result column="file_description" jdbcType="VARCHAR" property="fileDescription" />
+    <result column="file_download_num" jdbcType="INTEGER" property="fileDownloadNum" />
+    <result column="file_uploader" jdbcType="VARCHAR" property="fileUploader" />
+    <result column="file_uploader_id" jdbcType="INTEGER" property="fileUploaderId" />
+    <result column="list_order" jdbcType="INTEGER" property="listOrder" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="new_id" jdbcType="VARCHAR" property="newId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.juwen.ibc.pojo.SystemStudentFileData">
+    <result column="file_content" jdbcType="LONGVARCHAR" property="fileContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, file_name, file_path, system_student_file_data_type_id, file_description, file_download_num, 
+    file_uploader, file_uploader_id, list_order, status, create_at, new_id
+  </sql>
+  <sql id="Blob_Column_List">
+    file_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from system_student_file_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_student_file_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.SystemStudentFileData">
+    insert into system_student_file_data (id, file_name, file_path, 
+      system_student_file_data_type_id, file_description, 
+      file_download_num, file_uploader, file_uploader_id, 
+      list_order, status, create_at, 
+      new_id, file_content)
+    values (#{id,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, 
+      #{systemStudentFileDataTypeId,jdbcType=INTEGER}, #{fileDescription,jdbcType=VARCHAR}, 
+      #{fileDownloadNum,jdbcType=INTEGER}, #{fileUploader,jdbcType=VARCHAR}, #{fileUploaderId,jdbcType=INTEGER}, 
+      #{listOrder,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, 
+      #{newId,jdbcType=VARCHAR}, #{fileContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.SystemStudentFileData">
+    insert into system_student_file_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="filePath != null">
+        file_path,
+      </if>
+      <if test="systemStudentFileDataTypeId != null">
+        system_student_file_data_type_id,
+      </if>
+      <if test="fileDescription != null">
+        file_description,
+      </if>
+      <if test="fileDownloadNum != null">
+        file_download_num,
+      </if>
+      <if test="fileUploader != null">
+        file_uploader,
+      </if>
+      <if test="fileUploaderId != null">
+        file_uploader_id,
+      </if>
+      <if test="listOrder != null">
+        list_order,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="newId != null">
+        new_id,
+      </if>
+      <if test="fileContent != null">
+        file_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="systemStudentFileDataTypeId != null">
+        #{systemStudentFileDataTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="fileDescription != null">
+        #{fileDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="fileDownloadNum != null">
+        #{fileDownloadNum,jdbcType=INTEGER},
+      </if>
+      <if test="fileUploader != null">
+        #{fileUploader,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUploaderId != null">
+        #{fileUploaderId,jdbcType=INTEGER},
+      </if>
+      <if test="listOrder != null">
+        #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newId != null">
+        #{newId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileContent != null">
+        #{fileContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.SystemStudentFileData">
+    update system_student_file_data
+    <set>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        file_path = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="systemStudentFileDataTypeId != null">
+        system_student_file_data_type_id = #{systemStudentFileDataTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="fileDescription != null">
+        file_description = #{fileDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="fileDownloadNum != null">
+        file_download_num = #{fileDownloadNum,jdbcType=INTEGER},
+      </if>
+      <if test="fileUploader != null">
+        file_uploader = #{fileUploader,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUploaderId != null">
+        file_uploader_id = #{fileUploaderId,jdbcType=INTEGER},
+      </if>
+      <if test="listOrder != null">
+        list_order = #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newId != null">
+        new_id = #{newId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileContent != null">
+        file_content = #{fileContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.juwen.ibc.pojo.SystemStudentFileData">
+    update system_student_file_data
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      system_student_file_data_type_id = #{systemStudentFileDataTypeId,jdbcType=INTEGER},
+      file_description = #{fileDescription,jdbcType=VARCHAR},
+      file_download_num = #{fileDownloadNum,jdbcType=INTEGER},
+      file_uploader = #{fileUploader,jdbcType=VARCHAR},
+      file_uploader_id = #{fileUploaderId,jdbcType=INTEGER},
+      list_order = #{listOrder,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      new_id = #{newId,jdbcType=VARCHAR},
+      file_content = #{fileContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.SystemStudentFileData">
+    update system_student_file_data
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      system_student_file_data_type_id = #{systemStudentFileDataTypeId,jdbcType=INTEGER},
+      file_description = #{fileDescription,jdbcType=VARCHAR},
+      file_download_num = #{fileDownloadNum,jdbcType=INTEGER},
+      file_uploader = #{fileUploader,jdbcType=VARCHAR},
+      file_uploader_id = #{fileUploaderId,jdbcType=INTEGER},
+      list_order = #{listOrder,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      new_id = #{newId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.IStudentInfoDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.StudentInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="card_number" jdbcType="VARCHAR" property="cardNumber" />
+    <result column="exam_number" jdbcType="VARCHAR" property="examNumber" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="classes_id" jdbcType="INTEGER" property="classesId" />
+    <result column="professional_id" jdbcType="INTEGER" property="professionalId" />
+    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="branch_id" jdbcType="INTEGER" property="branchId" />
+    <result column="student_status_id" jdbcType="INTEGER" property="studentStatusId" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="teacher_comment" jdbcType="VARCHAR" property="teacherComment" />
+    <result column="teacher_score" jdbcType="VARCHAR" property="teacherScore" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, card_number, exam_number, password, admin_id, classes_id, professional_id, 
+    school_id, category_id, branch_id, student_status_id, create_at, status, teacher_comment, 
+    teacher_score, token
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from student_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from student_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.StudentInfo">
+    insert into student_info (id, name, card_number, 
+      exam_number, password, admin_id, 
+      classes_id, professional_id, school_id, 
+      category_id, branch_id, student_status_id, 
+      create_at, status, teacher_comment, 
+      teacher_score, token)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{cardNumber,jdbcType=VARCHAR}, 
+      #{examNumber,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{adminId,jdbcType=INTEGER}, 
+      #{classesId,jdbcType=INTEGER}, #{professionalId,jdbcType=INTEGER}, #{schoolId,jdbcType=INTEGER}, 
+      #{categoryId,jdbcType=INTEGER}, #{branchId,jdbcType=INTEGER}, #{studentStatusId,jdbcType=INTEGER}, 
+      #{createAt,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{teacherComment,jdbcType=VARCHAR}, 
+      #{teacherScore,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.StudentInfo">
+    insert into student_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="cardNumber != null">
+        card_number,
+      </if>
+      <if test="examNumber != null">
+        exam_number,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="classesId != null">
+        classes_id,
+      </if>
+      <if test="professionalId != null">
+        professional_id,
+      </if>
+      <if test="schoolId != null">
+        school_id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="studentStatusId != null">
+        student_status_id,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="teacherComment != null">
+        teacher_comment,
+      </if>
+      <if test="teacherScore != null">
+        teacher_score,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="examNumber != null">
+        #{examNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="classesId != null">
+        #{classesId,jdbcType=INTEGER},
+      </if>
+      <if test="professionalId != null">
+        #{professionalId,jdbcType=INTEGER},
+      </if>
+      <if test="schoolId != null">
+        #{schoolId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="studentStatusId != null">
+        #{studentStatusId,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="teacherComment != null">
+        #{teacherComment,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherScore != null">
+        #{teacherScore,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.StudentInfo">
+    update student_info
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="examNumber != null">
+        exam_number = #{examNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="classesId != null">
+        classes_id = #{classesId,jdbcType=INTEGER},
+      </if>
+      <if test="professionalId != null">
+        professional_id = #{professionalId,jdbcType=INTEGER},
+      </if>
+      <if test="schoolId != null">
+        school_id = #{schoolId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="branchId != null">
+        branch_id = #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="studentStatusId != null">
+        student_status_id = #{studentStatusId,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="teacherComment != null">
+        teacher_comment = #{teacherComment,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherScore != null">
+        teacher_score = #{teacherScore,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.StudentInfo">
+    update student_info
+    set name = #{name,jdbcType=VARCHAR},
+      card_number = #{cardNumber,jdbcType=VARCHAR},
+      exam_number = #{examNumber,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      classes_id = #{classesId,jdbcType=INTEGER},
+      professional_id = #{professionalId,jdbcType=INTEGER},
+      school_id = #{schoolId,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      branch_id = #{branchId,jdbcType=INTEGER},
+      student_status_id = #{studentStatusId,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      teacher_comment = #{teacherComment,jdbcType=VARCHAR},
+      teacher_score = #{teacherScore,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

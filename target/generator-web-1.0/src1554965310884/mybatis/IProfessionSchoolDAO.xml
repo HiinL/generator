@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.IProfessionSchoolDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.ProfessionSchool">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="profession_id" jdbcType="INTEGER" property="professionId" />
+    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
+    <result column="new_id" jdbcType="VARCHAR" property="newId" />
+    <result column="profession_new_id" jdbcType="VARCHAR" property="professionNewId" />
+    <result column="school_new_id" jdbcType="VARCHAR" property="schoolNewId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, profession_id, school_id, new_id, profession_new_id, school_new_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from profession_school
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from profession_school
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.ProfessionSchool">
+    insert into profession_school (id, profession_id, school_id, 
+      new_id, profession_new_id, school_new_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{professionId,jdbcType=INTEGER}, #{schoolId,jdbcType=INTEGER}, 
+      #{newId,jdbcType=VARCHAR}, #{professionNewId,jdbcType=VARCHAR}, #{schoolNewId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.ProfessionSchool">
+    insert into profession_school
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="professionId != null">
+        profession_id,
+      </if>
+      <if test="schoolId != null">
+        school_id,
+      </if>
+      <if test="newId != null">
+        new_id,
+      </if>
+      <if test="professionNewId != null">
+        profession_new_id,
+      </if>
+      <if test="schoolNewId != null">
+        school_new_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="professionId != null">
+        #{professionId,jdbcType=INTEGER},
+      </if>
+      <if test="schoolId != null">
+        #{schoolId,jdbcType=INTEGER},
+      </if>
+      <if test="newId != null">
+        #{newId,jdbcType=VARCHAR},
+      </if>
+      <if test="professionNewId != null">
+        #{professionNewId,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolNewId != null">
+        #{schoolNewId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.ProfessionSchool">
+    update profession_school
+    <set>
+      <if test="professionId != null">
+        profession_id = #{professionId,jdbcType=INTEGER},
+      </if>
+      <if test="schoolId != null">
+        school_id = #{schoolId,jdbcType=INTEGER},
+      </if>
+      <if test="newId != null">
+        new_id = #{newId,jdbcType=VARCHAR},
+      </if>
+      <if test="professionNewId != null">
+        profession_new_id = #{professionNewId,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolNewId != null">
+        school_new_id = #{schoolNewId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.ProfessionSchool">
+    update profession_school
+    set profession_id = #{professionId,jdbcType=INTEGER},
+      school_id = #{schoolId,jdbcType=INTEGER},
+      new_id = #{newId,jdbcType=VARCHAR},
+      profession_new_id = #{professionNewId,jdbcType=VARCHAR},
+      school_new_id = #{schoolNewId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

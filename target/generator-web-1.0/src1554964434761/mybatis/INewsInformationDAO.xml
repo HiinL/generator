@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.INewsInformationDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.NewsInformation">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="viewer_num" jdbcType="INTEGER" property="viewerNum" />
+    <result column="list_order" jdbcType="INTEGER" property="listOrder" />
+    <result column="publish_at" jdbcType="TIMESTAMP" property="publishAt" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="third_url" jdbcType="VARCHAR" property="thirdUrl" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.juwen.ibc.pojo.NewsInformation">
+    <result column="contents" jdbcType="LONGVARCHAR" property="contents" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, author, status, type, viewer_num, list_order, publish_at, create_at, third_url
+  </sql>
+  <sql id="Blob_Column_List">
+    contents
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news_information
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from news_information
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.NewsInformation">
+    insert into news_information (id, title, author, 
+      status, type, viewer_num, 
+      list_order, publish_at, create_at, 
+      third_url, contents)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{viewerNum,jdbcType=INTEGER}, 
+      #{listOrder,jdbcType=INTEGER}, #{publishAt,jdbcType=TIMESTAMP}, #{createAt,jdbcType=TIMESTAMP}, 
+      #{thirdUrl,jdbcType=VARCHAR}, #{contents,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.NewsInformation">
+    insert into news_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="viewerNum != null">
+        viewer_num,
+      </if>
+      <if test="listOrder != null">
+        list_order,
+      </if>
+      <if test="publishAt != null">
+        publish_at,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="thirdUrl != null">
+        third_url,
+      </if>
+      <if test="contents != null">
+        contents,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="viewerNum != null">
+        #{viewerNum,jdbcType=INTEGER},
+      </if>
+      <if test="listOrder != null">
+        #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="publishAt != null">
+        #{publishAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thirdUrl != null">
+        #{thirdUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null">
+        #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.NewsInformation">
+    update news_information
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="viewerNum != null">
+        viewer_num = #{viewerNum,jdbcType=INTEGER},
+      </if>
+      <if test="listOrder != null">
+        list_order = #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="publishAt != null">
+        publish_at = #{publishAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thirdUrl != null">
+        third_url = #{thirdUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null">
+        contents = #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.juwen.ibc.pojo.NewsInformation">
+    update news_information
+    set title = #{title,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=CHAR},
+      viewer_num = #{viewerNum,jdbcType=INTEGER},
+      list_order = #{listOrder,jdbcType=INTEGER},
+      publish_at = #{publishAt,jdbcType=TIMESTAMP},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      third_url = #{thirdUrl,jdbcType=VARCHAR},
+      contents = #{contents,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.NewsInformation">
+    update news_information
+    set title = #{title,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=CHAR},
+      viewer_num = #{viewerNum,jdbcType=INTEGER},
+      list_order = #{listOrder,jdbcType=INTEGER},
+      publish_at = #{publishAt,jdbcType=TIMESTAMP},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      third_url = #{thirdUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

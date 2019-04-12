@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.IApplicantsPlanDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.ApplicantsPlan">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="batch_id" jdbcType="INTEGER" property="batchId" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="register_point_id" jdbcType="INTEGER" property="registerPointId" />
+    <result column="student_info_id" jdbcType="INTEGER" property="studentInfoId" />
+    <result column="profession_id" jdbcType="INTEGER" property="professionId" />
+    <result column="total_exam_fee" jdbcType="DECIMAL" property="totalExamFee" />
+    <result column="exam_date_one" jdbcType="TIMESTAMP" property="examDateOne" />
+    <result column="exam_date_one_curriculum" jdbcType="VARCHAR" property="examDateOneCurriculum" />
+    <result column="exam_date_two" jdbcType="TIMESTAMP" property="examDateTwo" />
+    <result column="exam_date_two_curriculum" jdbcType="VARCHAR" property="examDateTwoCurriculum" />
+    <result column="exam_date_three" jdbcType="TIMESTAMP" property="examDateThree" />
+    <result column="exam_date_three_curriculum" jdbcType="VARCHAR" property="examDateThreeCurriculum" />
+    <result column="exam_num" jdbcType="INTEGER" property="examNum" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="list_order" jdbcType="INTEGER" property="listOrder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, batch_id, admin_id, category_id, register_point_id, student_info_id, profession_id, 
+    total_exam_fee, exam_date_one, exam_date_one_curriculum, exam_date_two, exam_date_two_curriculum, 
+    exam_date_three, exam_date_three_curriculum, exam_num, create_at, status, list_order
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from applicants_plan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from applicants_plan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.ApplicantsPlan">
+    insert into applicants_plan (id, batch_id, admin_id, 
+      category_id, register_point_id, student_info_id, 
+      profession_id, total_exam_fee, exam_date_one, 
+      exam_date_one_curriculum, exam_date_two, exam_date_two_curriculum, 
+      exam_date_three, exam_date_three_curriculum, 
+      exam_num, create_at, status, 
+      list_order)
+    values (#{id,jdbcType=INTEGER}, #{batchId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, 
+      #{categoryId,jdbcType=INTEGER}, #{registerPointId,jdbcType=INTEGER}, #{studentInfoId,jdbcType=INTEGER}, 
+      #{professionId,jdbcType=INTEGER}, #{totalExamFee,jdbcType=DECIMAL}, #{examDateOne,jdbcType=TIMESTAMP}, 
+      #{examDateOneCurriculum,jdbcType=VARCHAR}, #{examDateTwo,jdbcType=TIMESTAMP}, #{examDateTwoCurriculum,jdbcType=VARCHAR}, 
+      #{examDateThree,jdbcType=TIMESTAMP}, #{examDateThreeCurriculum,jdbcType=VARCHAR}, 
+      #{examNum,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{listOrder,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.ApplicantsPlan">
+    insert into applicants_plan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="registerPointId != null">
+        register_point_id,
+      </if>
+      <if test="studentInfoId != null">
+        student_info_id,
+      </if>
+      <if test="professionId != null">
+        profession_id,
+      </if>
+      <if test="totalExamFee != null">
+        total_exam_fee,
+      </if>
+      <if test="examDateOne != null">
+        exam_date_one,
+      </if>
+      <if test="examDateOneCurriculum != null">
+        exam_date_one_curriculum,
+      </if>
+      <if test="examDateTwo != null">
+        exam_date_two,
+      </if>
+      <if test="examDateTwoCurriculum != null">
+        exam_date_two_curriculum,
+      </if>
+      <if test="examDateThree != null">
+        exam_date_three,
+      </if>
+      <if test="examDateThreeCurriculum != null">
+        exam_date_three_curriculum,
+      </if>
+      <if test="examNum != null">
+        exam_num,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="listOrder != null">
+        list_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="registerPointId != null">
+        #{registerPointId,jdbcType=INTEGER},
+      </if>
+      <if test="studentInfoId != null">
+        #{studentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="professionId != null">
+        #{professionId,jdbcType=INTEGER},
+      </if>
+      <if test="totalExamFee != null">
+        #{totalExamFee,jdbcType=DECIMAL},
+      </if>
+      <if test="examDateOne != null">
+        #{examDateOne,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examDateOneCurriculum != null">
+        #{examDateOneCurriculum,jdbcType=VARCHAR},
+      </if>
+      <if test="examDateTwo != null">
+        #{examDateTwo,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examDateTwoCurriculum != null">
+        #{examDateTwoCurriculum,jdbcType=VARCHAR},
+      </if>
+      <if test="examDateThree != null">
+        #{examDateThree,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examDateThreeCurriculum != null">
+        #{examDateThreeCurriculum,jdbcType=VARCHAR},
+      </if>
+      <if test="examNum != null">
+        #{examNum,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="listOrder != null">
+        #{listOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.ApplicantsPlan">
+    update applicants_plan
+    <set>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="registerPointId != null">
+        register_point_id = #{registerPointId,jdbcType=INTEGER},
+      </if>
+      <if test="studentInfoId != null">
+        student_info_id = #{studentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="professionId != null">
+        profession_id = #{professionId,jdbcType=INTEGER},
+      </if>
+      <if test="totalExamFee != null">
+        total_exam_fee = #{totalExamFee,jdbcType=DECIMAL},
+      </if>
+      <if test="examDateOne != null">
+        exam_date_one = #{examDateOne,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examDateOneCurriculum != null">
+        exam_date_one_curriculum = #{examDateOneCurriculum,jdbcType=VARCHAR},
+      </if>
+      <if test="examDateTwo != null">
+        exam_date_two = #{examDateTwo,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examDateTwoCurriculum != null">
+        exam_date_two_curriculum = #{examDateTwoCurriculum,jdbcType=VARCHAR},
+      </if>
+      <if test="examDateThree != null">
+        exam_date_three = #{examDateThree,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examDateThreeCurriculum != null">
+        exam_date_three_curriculum = #{examDateThreeCurriculum,jdbcType=VARCHAR},
+      </if>
+      <if test="examNum != null">
+        exam_num = #{examNum,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="listOrder != null">
+        list_order = #{listOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.ApplicantsPlan">
+    update applicants_plan
+    set batch_id = #{batchId,jdbcType=INTEGER},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      register_point_id = #{registerPointId,jdbcType=INTEGER},
+      student_info_id = #{studentInfoId,jdbcType=INTEGER},
+      profession_id = #{professionId,jdbcType=INTEGER},
+      total_exam_fee = #{totalExamFee,jdbcType=DECIMAL},
+      exam_date_one = #{examDateOne,jdbcType=TIMESTAMP},
+      exam_date_one_curriculum = #{examDateOneCurriculum,jdbcType=VARCHAR},
+      exam_date_two = #{examDateTwo,jdbcType=TIMESTAMP},
+      exam_date_two_curriculum = #{examDateTwoCurriculum,jdbcType=VARCHAR},
+      exam_date_three = #{examDateThree,jdbcType=TIMESTAMP},
+      exam_date_three_curriculum = #{examDateThreeCurriculum,jdbcType=VARCHAR},
+      exam_num = #{examNum,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      list_order = #{listOrder,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

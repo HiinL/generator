@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.IAutoSubjectAnswerDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.AutoSubjectAnswer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="auto_subject_id" jdbcType="INTEGER" property="autoSubjectId" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.juwen.ibc.pojo.AutoSubjectAnswer">
+    <result column="name" jdbcType="LONGVARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, auto_subject_id, create_at
+  </sql>
+  <sql id="Blob_Column_List">
+    name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from auto_subject_answer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from auto_subject_answer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.AutoSubjectAnswer">
+    insert into auto_subject_answer (id, auto_subject_id, create_at, 
+      name)
+    values (#{id,jdbcType=INTEGER}, #{autoSubjectId,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, 
+      #{name,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.AutoSubjectAnswer">
+    insert into auto_subject_answer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="autoSubjectId != null">
+        auto_subject_id,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="autoSubjectId != null">
+        #{autoSubjectId,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juwen.ibc.pojo.AutoSubjectAnswer">
+    update auto_subject_answer
+    <set>
+      <if test="autoSubjectId != null">
+        auto_subject_id = #{autoSubjectId,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.juwen.ibc.pojo.AutoSubjectAnswer">
+    update auto_subject_answer
+    set auto_subject_id = #{autoSubjectId,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juwen.ibc.pojo.AutoSubjectAnswer">
+    update auto_subject_answer
+    set auto_subject_id = #{autoSubjectId,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

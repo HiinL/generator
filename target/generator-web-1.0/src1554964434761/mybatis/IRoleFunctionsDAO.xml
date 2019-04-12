@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juwen.ibc.dao.IRoleFunctionsDAO">
+  <resultMap id="BaseResultMap" type="com.juwen.ibc.pojo.RoleFunctions">
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="function_id" jdbcType="INTEGER" property="functionId" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="created_man" jdbcType="VARCHAR" property="createdMan" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="updated_man" jdbcType="VARCHAR" property="updatedMan" />
+  </resultMap>
+  <insert id="insert" parameterType="com.juwen.ibc.pojo.RoleFunctions">
+    insert into role_functions (role_id, function_id, created_at, 
+      created_man, updated_at, updated_man
+      )
+    values (#{roleId,jdbcType=INTEGER}, #{functionId,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{createdMan,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}, #{updatedMan,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.juwen.ibc.pojo.RoleFunctions">
+    insert into role_functions
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="functionId != null">
+        function_id,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="createdMan != null">
+        created_man,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="updatedMan != null">
+        updated_man,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="functionId != null">
+        #{functionId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdMan != null">
+        #{createdMan,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedMan != null">
+        #{updatedMan,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
