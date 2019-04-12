@@ -1,8 +1,3 @@
-/**
- * Created by .JA
- * Company 北京众信金融
- */
-
 $(function() {
 	initConfig();// 加载配置
 });

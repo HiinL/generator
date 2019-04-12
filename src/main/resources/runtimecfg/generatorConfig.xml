@@ -36,9 +36,9 @@
 
 		<!-- MySQL数据库链接URL、用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver" 
-			connectionURL="jdbc:mysql://rm-8vbumz16s1pa282241o.mysql.zhangbei.rds.aliyuncs.com:3306/juwen_ibc?useUnicode=true&amp;characterEncoding=utf-8"
-			userId="test_juwen"
-			password="Juwenkeji20181015">
+			connectionURL="jdbc:mysql://localhost:3306/data?useUnicode=true&amp;characterEncoding=utf-8"
+			userId="username"
+			password="pwd">
 			<!-- 设置 useInformationSchema 属性为 true -->
 			<property name="useInformationSchema" value="true" />
 		</jdbcConnection>
@@ -48,7 +48,7 @@
 	    </javaTypeResolver>
 		
 		<!-- 生成模型的包名和位置 -->
-		<javaModelGenerator targetPackage="com.juwen.ibc.pojo" targetProject="G:\src">
+		<javaModelGenerator targetPackage="pojo包名" targetProject="G:\src">
 			<property name="enableSubPackages" value="false" />
 			<property name="trimStrings" value="false" />
 		</javaModelGenerator>
@@ -59,7 +59,7 @@
 		</sqlMapGenerator>
 		
 		<!-- 生成DAO的包名和位置 -->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.juwen.ibc.dao" targetProject="G:\src">
+		<javaClientGenerator type="XMLMAPPER" targetPackage="dao包名" targetProject="G:\src">
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 

@@ -37,12 +37,6 @@ import com.generator.param.GeneratorParam;
 import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 
-
-
-/**
- * Created by .JA
- * Company 北京众信金融
- */
 public class GeneratorServlet extends HttpServlet {
     /**
 	 * 

@@ -1,9 +1,5 @@
 package com.generator.param;
 
-/**
- * Created by .JA
- * Company 北京众信金融
- */
 public class GeneratorParam {
 	
 	private String connection;
